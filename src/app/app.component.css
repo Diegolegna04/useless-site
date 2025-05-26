@@ -3,18 +3,19 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    height: 100vh;
     font-family: 'Arial', sans-serif;
     text-align: center;
     color: #fff;
     padding: 20px;
     box-sizing: border-box;
 
-    -webkit-touch-callout: none; /* iOS Safari */
-      -webkit-user-select: none; /* Safari */
-       -khtml-user-select: none; /* Konqueror HTML */
-         -moz-user-select: none; /* Old versions of Firefox */
-          -ms-user-select: none; /* Internet Explorer/Edge */
-              user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 h1 {
@@ -27,17 +28,41 @@ p {
     line-height: 1.6;
 }
 
-.spinning-useless-thing {
-    width: 100px;
-    height: 100px;
-    border: 10px solid #555;
-    border-top-color: #aaa;
-    border-radius: 50%;
-    animation: spin 2s linear infinite;
-    margin: 30px 0;
+.spinning-useless-thing-wrapper {
+    position: relative; /* Per posizionare il testo relativamente a questo */
+    margin: 30px 0; /* Spostato dal .spinning-useless-thing */
+    display: inline-block; /* Per adattarsi al contenuto */
 }
 
+.spinning-useless-thing {
+      width: 100px;
+      height: 100px;
+      border: 10px solid #555;
+      border-top-color: #aaa;
+      border-radius: 50%;
+      animation: spin 2s linear infinite;
+}
+  
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+}
+
+.useless-hover-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centra il testo */
+    background-color: rgba(0, 0, 0, 0.8); /* Sfondo semi-trasparente */
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    white-space: nowrap; /* Mantiene il testo su una riga */
+    opacity: 0; /* Inizialmente invisibile */
+    pointer-events: none; /* Impedisce che il testo blocchi eventi mouse */
+    transition: opacity 0.3s ease-in-out; /* Animazione di dissolvenza */
+}
+
+.spinning-useless-thing-wrapper:hover .useless-hover-text {
+    opacity: 1; /* Rendi visibile il testo in hover */
 }
